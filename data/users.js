@@ -32,4 +32,10 @@ export const USERS = [
     image:
       "https://scontent.famm2-3.fna.fbcdn.net/v/t1.6435-9/88123663_2867214479988590_2183669726721343488_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_eui2=AeFrcYy8zw1r3-oYO-3T-OJCbRgJIwFgdS5tGAkjAWB1LsxiD5o4TZYLh9zUwPzgPeZsp1b3LmgpAeDM4PzmKraY&_nc_ohc=HBM6mfKlSz8AX99yedU&tn=fZvDsFi2DvSZ3hrK&_nc_ht=scontent.famm2-3.fna&oh=43c4fc4d2f67b852e4166a6a832a102a&oe=61ABCE1B",
   },
+    {
+    id: 6,
+    user: "Cinur",
+    image:
+      "https://scontent.famm2-3.fna.fbcdn.net/v/t31.18172-8/15937157_1606808016012543_2337087566501078422_o.jpg?_nc_cat=100&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeF9UKT_6pw0WdYFOjzbFSFznxWHCzeAEJ2fFYcLN4AQnReWBTQTeaGC9Aoe5pjiFZJbQxuKliq4R8-FHQMzX5ep&_nc_ohc=vu3V2pYiL4cAX_15QmA&_nc_ht=scontent.famm2-3.fna&oh=925d3f6c1746191fc163516de6f58683&oe=61B01875",
+  },
 ];
