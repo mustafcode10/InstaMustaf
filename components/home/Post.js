@@ -17,11 +17,12 @@ const postFooterIcons = [
   },
   {
     name: "Share",
-    imageUrl: "https://img.icons8.com/fluency-systems-regular/344/ffffff/sent.png",
+    imageUrl:
+      "https://img.icons8.com/fluency-systems-regular/344/ffffff/sent.png",
   },
   {
     name: "Save",
-    imageUrl: "http://",
+    imageUrl: "https://img.icons8.com/material-outlined/344/ffffff/save.png",
   },
 ];
 
@@ -33,6 +34,8 @@ const Post = ({ post }) => {
       <PostImage post={post} />
       <View style={{ marginTop: 10, marginHorizontal: 10 }}>
         <PostFooter />
+        <Likes post={post} />
+        <Caption post={post} />
       </View>
     </View>
   );
@@ -63,21 +66,43 @@ const PostImage = ({ post }) => (
   </View>
 );
 
-const PostFooter = () => (
-  <View style={{flexDirection: 'row'}}>
-  <View style={styles.leftFooterIconsContainer}>
-      <Icon imgStyle={styles.footerIcon} imgUrl={postFooterIcons[0].imageUrl} />
-    <Icon imgStyle={styles.footerIcon} imgUrl={postFooterIcons[1].imageUrl} />
-    <Icon imgStyle={styles.footerIcon} imgUrl={postFooterIcons[2].imageUrl} />
-  </View>
+const Icon = ({ imgUrl, imgStyle }) => (
+  <TouchableOpacity>
+    <Image source={{ uri: imgUrl }} style={imgStyle} />
+  </TouchableOpacity>
+);
 
+const PostFooter = () => (
+  <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+    <View style={styles.leftFooterIconsContainer}>
+      <Icon imgStyle={styles.footerIcon} imgUrl={postFooterIcons[0].imageUrl} />
+      <Icon imgStyle={styles.footerIcon} imgUrl={postFooterIcons[1].imageUrl} />
+      <Icon
+        imgStyle={[styles.footerIcon, styles.shareIcon]}
+        imgUrl={postFooterIcons[2].imageUrl}
+      />
+    </View>
+    <View style={{ flex: 1, alignItems: "flex-end" }}>
+      <Icon imgStyle={styles.footerIcon} imgUrl={postFooterIcons[3].imageUrl} />
+    </View>
   </View>
 );
 
-const Icon = ({ imgUrl, imgStyle }) => (
-  <TouchableOpacity>
-    <Image style={imgStyle} source={{ uri: imgUrl }} />
-  </TouchableOpacity>
+const Likes = ({ post }) => (
+  <View style={{ flexDirection: "row", marginTop: 4 }}>
+    <Text style={{ color: "white", fontWeight: "600" }}>
+      {post.likes.toLocaleString("en")} likes
+    </Text>
+  </View>
+);
+
+const Caption = ({ post }) => (
+  <View style={{marginTop: 5}}>
+    <Text style={{color: "white"}}>
+      <Text style={{ fontWeight: "bold" }}>{post.user} </Text>
+      <Text> {post.caption}</Text>
+    </Text>
+  </View>
 );
 
 export default Post;
@@ -101,9 +126,12 @@ const styles = StyleSheet.create({
     height: 33,
   },
   leftFooterIconsContainer: {
-      flexDirection: "row",
-      width: "32%",
-      justifyContent: "space-between",
-
-  }
+    flexDirection: "row",
+    width: "32%",
+    justifyContent: "space-between",
+  },
+  shareIcon: {
+    transform: [{ rotate: "320deg" }],
+    marginTop: -3,
+  },
 });

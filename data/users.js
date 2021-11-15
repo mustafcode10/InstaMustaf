@@ -38,4 +38,10 @@ export const USERS = [
     image:
       "https://scontent.famm2-3.fna.fbcdn.net/v/t31.18172-8/15937157_1606808016012543_2337087566501078422_o.jpg?_nc_cat=100&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeF9UKT_6pw0WdYFOjzbFSFznxWHCzeAEJ2fFYcLN4AQnReWBTQTeaGC9Aoe5pjiFZJbQxuKliq4R8-FHQMzX5ep&_nc_ohc=vu3V2pYiL4cAX_15QmA&_nc_ht=scontent.famm2-3.fna&oh=925d3f6c1746191fc163516de6f58683&oe=61B01875",
   },
+      {
+    id: 7,
+    user: "Sumi Qurox",
+    image:
+      "https://scontent.famm2-3.fna.fbcdn.net/v/t1.6435-1/p320x320/101547911_1354523758271738_1676447283203276800_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=7206a8&_nc_eui2=AeEF8Ool3z8QmerFeCziCPP4L0TtgokhKB8vRO2CiSEoH9VZi0tde2Gf1-31XjBuHaEjdCEv6LGnTnywxy9GEVnE&_nc_ohc=Jz0239DgT9gAX8eecgD&tn=fZvDsFi2DvSZ3hrK&_nc_ht=scontent.famm2-3.fna&oh=a46a6b65b1e0c6749b3c9b9965e57671&oe=61B8DF80",
+  },
 ];
