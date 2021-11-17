@@ -14,7 +14,7 @@ export const POSTS = [
         user: "Mustafa",
         comment: "Hi! Once I wake up, I will  finally be ready to code this up",
       },
-      { user: "Bakar", comment: "keep it man" },
+      { user: "Bakar", comment: "keep it man 😎" },
       { user: "Ismael Mohamed", comment: "all the best " },
 
     ],
@@ -29,7 +29,7 @@ export const POSTS = [
     comments: [
       { user: "Mohamed", comment: "Medical exam" },
 
-      { user: "Mustaf", comment: "all the best" },
+      { user: "Mustaf", comment: "good luck 💪" },
     ],
   },
   {

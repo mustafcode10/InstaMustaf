@@ -37,6 +37,7 @@ const Post = ({ post }) => {
         <Likes post={post} />
         <Caption post={post} />
         <CommentsSections post={post} />
+        <Comments post={post} />
       </View>
     </View>
   );
@@ -108,13 +109,26 @@ const Caption = ({ post }) => (
 
 const CommentsSections = ({ post }) => (
   <View style={{ marginTop: 5 }}>
-    { !!post.comments.length && (
+    {!!post.comments.length && (
       <Text style={{ color: "grey" }}>
-          View {post.comments.length > 1 ? "All " : ""} {post.comments.length}{" "}
+        View {post.comments.length > 1 ? "All " : ""} {post.comments.length}{" "}
         {post.comments.length > 1 ? "comments" : "comment"}
       </Text>
     )}
   </View>
+);
+
+const Comments = ({ post }) => (
+  <>
+    {post.comments.map((comment, index) => (
+      <View key={index} style={{flexDirection: 'row', marginTop: 5}}>
+        <Text style={{ color: "white" }}>
+          <Text style={{fontWeight: "bold"}}>{comment.user} {' '}</Text>
+           {comment.comment}
+        </Text>
+      </View>
+    ))}
+  </>
 );
 
 export default Post;
