@@ -4,7 +4,7 @@ import { View, Text } from "react-native";
 export const USERS = [
   {
     id: 1,
-    user: "Mustaf Charger",
+    user: "Mustaf",
     image:
       "https://scontent.famm2-3.fna.fbcdn.net/v/t1.6435-1/s320x320/251500216_4577582788951742_7047083087247365839_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=7206a8&_nc_eui2=AeGkf7X2j2-vKuZwq-fSyTdPUTl1NS-80atROXU1L7zRq1qshKi4YqUry0pfKg8rlnQdP7eDVdnt51S9sbLEdkZc&_nc_ohc=hvHpfSrPrIIAX_kD2Nq&_nc_ht=scontent.famm2-3.fna&oh=ae311833ddd85cc826f55b04323a849f&oe=61AD14EF",
   },
