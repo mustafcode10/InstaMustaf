@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Image } from "react-native";
+import { StyleSheet, Text, View, TextInput, Image, Button } from "react-native";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import { Divider } from "react-native-elements";
@@ -19,6 +19,7 @@ const FormikPostUploader = () => {
       initialValues={{ caption: "", imageUrl: "" }}
       onSubmit={(values) => console.log(values)}
       validationSchema={uploadPostSchemata}
+      validateOnMount={true}
     >
       {({
         handleBlur,
@@ -37,7 +38,7 @@ const FormikPostUploader = () => {
             }}
           >
             <Image
-              source={{ uri: PLACEHOLDER_IMG }}
+              source={{ uri: thumbnailUrl ? thumbnailUrl : PLACEHOLDER_IMG}}
               style={{ width: 100, height: 100,   }}
             />
             <View style={{flex: 1, marginLeft: 12,}}>
@@ -54,6 +55,7 @@ const FormikPostUploader = () => {
           </View>
           <Divider width={0.1} orientation="vertical" />
           <TextInput
+           onChange = {(e)=> setThumbnailUrl(e.nativeEvent.text)}
             style={{ color: "white", fontSize: 18 }}
             placeholder="Enter Image Url"
             placeholderTextColor="gray"
@@ -61,6 +63,10 @@ const FormikPostUploader = () => {
             onBlur={handleBlur("imageUrl")}
             value={values.imageUrl}
           />
+          {errors.imageUrl && (
+              <Text style={{color: "red", fontSize: 20}}>{errors.imageUrl}</Text>
+          )}
+          <Button onPress={handleSubmit} title="Share" disabled={!isValid} />
         </>
       )}
     </Formik>
