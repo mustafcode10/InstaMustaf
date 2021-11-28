@@ -17,7 +17,7 @@ const Header = ({navigation}) => {
         style={styles.icon}
        />
       </TouchableOpacity>
-       <TouchableOpacity>
+       <TouchableOpacity  onPress={()=> navigation.push('LoginScreen')}>
         <Image   source={require("../../assets/heart.png")}
         style={styles.icon}
        />
