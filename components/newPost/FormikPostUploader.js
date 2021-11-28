@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, Image, Button } from "react-native";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import { Divider } from "react-native-elements";
+import validUrl from "valid-url";
 
 const uploadPostSchemata = Yup.object().shape({
   imageUrl: Yup.string().url().required("A url is required"),
@@ -12,12 +13,16 @@ const uploadPostSchemata = Yup.object().shape({
 const PLACEHOLDER_IMG =
   "https://img.icons8.com/material-outlined/2x/ffffff/image.png";
 
-const FormikPostUploader = () => {
+const FormikPostUploader = ({navigation}) => {
   const [thumbnailUrl, setThumbnailUrl] = useState(PLACEHOLDER_IMG);
   return (
     <Formik
       initialValues={{ caption: "", imageUrl: "" }}
-      onSubmit={(values) => console.log(values)}
+      onSubmit={(values) =>{ 
+        console.log(values)
+        console.log('your post was submitted successfully')
+        navigation.goBack()
+        }}
       validationSchema={uploadPostSchemata}
       validateOnMount={true}
     >
@@ -38,7 +43,7 @@ const FormikPostUploader = () => {
             }}
           >
             <Image
-              source={{ uri: thumbnailUrl ? thumbnailUrl : PLACEHOLDER_IMG}}
+              source={{ uri: validUrl.isUri(thumbnailUrl) ? thumbnailUrl : PLACEHOLDER_IMG}}
               style={{ width: 100, height: 100,   }}
             />
             <View style={{flex: 1, marginLeft: 12,}}>
