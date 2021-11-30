@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     minHeight: 42,
     borderRadius: 4,
+    marginTop: 20,
   }),
   buttonText: {
     fontWeight: "600",
