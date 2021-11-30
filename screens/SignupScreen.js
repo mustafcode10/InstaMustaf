@@ -1,5 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
+import SignupForm from './../components/signupScreen/SignupForm';
+
 
 
 const INSTGRAM_LOGO =
@@ -10,7 +12,7 @@ const SignupScreen = () => (
     <View style={styles.logoContainer}>
       <Image source={{ uri: INSTGRAM_LOGO, height: 100, width: 100 }} />
     </View>
-    {/* <LoginForm /> */}
+    <SignupForm />
   </View>
 );
 
