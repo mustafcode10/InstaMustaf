@@ -110,7 +110,7 @@ const SignupForm = ({navigation}) => {
             </Pressable>
             <View style={styles.signupContainer}>
               <Text>Already have an account? </Text>
-              <TouchableOpacity onPress={()=> navigation.push("LoginScreen")}>
+              <TouchableOpacity onPress={()=> navigation.goBack()}>
                 <Text style={{ color: "#6BB0F5" }}>Login In</Text>
               </TouchableOpacity>
             </View>
