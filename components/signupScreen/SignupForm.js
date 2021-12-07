@@ -6,26 +6,51 @@ import {
   TextInput,
   Pressable,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import Validator from "email-validator";
-const SignupForm = ({navigation}) => {
+import firebase from "../../firebase";
+
+const SignupForm = ({ navigation }) => {
   const SignupFormSchema = Yup.object().shape({
     email: Yup.string().email().required("An email is required"),
-    username: Yup.string()
-      .required()
-      .min(2, "A username is required"),
+    username: Yup.string().required().min(2, "A username is required"),
     password: Yup.string()
       .required()
       .min(6, "Your password has to have a least 6 characters"),
   });
+
+  const onSignup = async (email, password) => {
+    try {
+      await firebase.auth().createUserWithEmailAndPassword(email,  password)
+      console.log("Firebase User Created Successfully 🥰 😊", email, password);
+    } catch (error) {
+      Alert.alert(
+        'Hi Dear....', error.message + '\n\n ... oops something went wrong',
+             [
+          {
+            text: "OK",
+            onPress: () => console.log(error.message),
+          },
+          {
+            text: "Log In",
+            onPress: () => navigation.push("LoginScreen"),
+          },
+        ]
+        )
+      console.log(e);
+    }
+  };
+
   return (
     <View style={styles.wrapper}>
       <Formik
         initialValues={{ email: "", username: "", password: "" }}
         onSubmit={(values) => {
-          console.log(values);
+          // console.log(values);
+          onSignup(values.email,  values.password);
         }}
         validationSchema={SignupFormSchema}
         validateOnMount={true}
@@ -110,7 +135,7 @@ const SignupForm = ({navigation}) => {
             </Pressable>
             <View style={styles.signupContainer}>
               <Text>Already have an account? </Text>
-              <TouchableOpacity onPress={()=> navigation.goBack()}>
+              <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Text style={{ color: "#6BB0F5" }}>Login In</Text>
               </TouchableOpacity>
             </View>
