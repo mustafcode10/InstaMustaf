@@ -21,23 +21,31 @@ const LoginForm = ({ navigation }) => {
     password: Yup.string()
       .required()
       .min(6, "Your password has to have a least 6 characters"),
-  })
+  });
 
-    const onLogin = async (email, password) => {
-        try {
-          await firebase.auth().signInWithEmailAndPassword(email, password); 
-           console.log(" firebase login successfully", email, password);
-            alert('successfully login 💓✌😎')
-
-        } catch (error) {
-          console.log(error.message)
-
-        }
+  const onLogin = async (email, password) => {
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      console.log(" firebase 😎 Login successfully  ✅", email, password);
+      Alert.alert("😎 Login successfully  ✅");
+    } catch (error) {
+      // Alert.alert(error.message);
+      Alert.alert(
+        "😎 Hi Dear...",
+        error.message + "\n\n ...What would you like to do next😦😦 ",
+        [
+          {
+            text: "OK",
+            onPress: () => console.log(error.message),
+          },
+          {
+            text: "Sign Up",
+            onPress: () => navigation.push("SignupScreen"),
+          },
+        ]
+      );
     }
-
-
-
-
+  };
 
   return (
     <View style={styles.wrapper}>
