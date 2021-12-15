@@ -12,6 +12,9 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import Validator from "email-validator";
 import firebase from "../../firebase";
+import "firebase/compat/firestore";
+////////////////////////////////////////////////
+const db = firebase.firestore();
 
 const SignupForm = ({ navigation }) => {
   const SignupFormSchema = Yup.object().shape({
@@ -22,14 +25,30 @@ const SignupForm = ({ navigation }) => {
       .min(6, "Your password has to have a least 6 characters"),
   });
 
-  const onSignup = async (email, password) => {
+  const getRandomProfilePicture = async () => {
+    const response = await fetch(`https://randomuser.me/api`);
+    const data = await response.json();
+    //  console.log(data);
+    return data.results[0].picture.large;
+  };
+
+  const onSignup = async (email, password, username) => {
     try {
-      await firebase.auth().createUserWithEmailAndPassword(email,  password)
+      const authUser = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password);
       console.log("Firebase User Created Successfully 🥰 😊", email, password);
+      db.collection("users").add({
+        owner_uid: authUser.user.uid,
+        username: username,
+        email: authUser.user.email,
+        profile_picture: await getRandomProfilePicture(),
+      });
     } catch (error) {
       Alert.alert(
-        'Hi Dear....', error.message + '\n\n ... oops something went wrong',
-             [
+        "Hi Dear....",
+        error.message + "\n\n ... oops something went wrong",
+        [
           {
             text: "OK",
             onPress: () => console.log(error.message),
@@ -39,7 +58,7 @@ const SignupForm = ({ navigation }) => {
             onPress: () => navigation.push("LoginScreen"),
           },
         ]
-        )
+      );
       console.log(e);
     }
   };
@@ -50,7 +69,7 @@ const SignupForm = ({ navigation }) => {
         initialValues={{ email: "", username: "", password: "" }}
         onSubmit={(values) => {
           // console.log(values);
-          onSignup(values.email,  values.password);
+          onSignup(values.email, values.password, values.username);
         }}
         validationSchema={SignupFormSchema}
         validateOnMount={true}

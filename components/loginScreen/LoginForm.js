@@ -12,9 +12,14 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import Validator from "email-validator";
 import firebase from "../../firebase";
-import "firebase/compat/auth";
 
+//////////////////////////////////////////////////////
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+///////////////////////////////////////////////////////
 const auth = firebase.auth();
+const db = firebase.firestore();
+
 const LoginForm = ({ navigation }) => {
   const LoginFormSchema = Yup.object().shape({
     email: Yup.string().email().required("An email is required"),
@@ -26,7 +31,7 @@ const LoginForm = ({ navigation }) => {
   const onLogin = async (email, password) => {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
-      console.log(" firebase 😎 Login successfully  ✅", email, password);
+      console.log(" firebase 😎 Login successfully  ✅", email, password, db);
       Alert.alert("😎 Login successfully  ✅");
     } catch (error) {
       // Alert.alert(error.message);
