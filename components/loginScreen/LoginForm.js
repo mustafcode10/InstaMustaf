@@ -31,7 +31,7 @@ const LoginForm = ({ navigation }) => {
   const onLogin = async (email, password) => {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
-      console.log(" firebase 😎 Login successfully  ✅", email, password, db);
+      console.log(" firebase 😎 Login successfully  ✅", email, password);
       Alert.alert("😎 Login successfully  ✅");
     } catch (error) {
       // Alert.alert(error.message);
