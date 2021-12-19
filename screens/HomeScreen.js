@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from "react-native";
 import Header from "./../components/home/Header";
 import Stories from "./../components/home/Stories";
@@ -10,9 +10,12 @@ import "firebase/compat/firestore";
 const db = firebase.firestore();
 
 const HomeScreen = ({navigation}) => {
+  const [posts, setPosts] =  useState([])
   useEffect(() => {
     db.collectionGroup('posts').onSnapshot((snapshot) => {
       console.log('POSTS', snapshot.docs.map(doc => doc.data()))
+      setPosts(snapshot.docs.map(doc => doc.data()))
+
     })
   }, [])
   return (
@@ -20,7 +23,7 @@ const HomeScreen = ({navigation}) => {
       <Header navigation={navigation} />
       <Stories />
       <ScrollView>
-        {POSTS.map((post, index) => (
+        {posts.map((post, index) => (
           <Post post={post} key={index} />
         ))}
       </ScrollView>
