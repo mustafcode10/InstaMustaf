@@ -4,13 +4,17 @@ import { USERS } from "../../data/users";
 
 const Stories = () => {
   return (
-    <View style={{marginBottom: 13}}>
+    <View style={{ marginBottom: 13 }}>
       {/* <Text style={{color: 'white'}}>STORIES</Text> */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {USERS.map((story, index) => (
-          <View key={index} style={{alignItems: 'center'}}>
+          <View key={index} style={{ alignItems: "center" }}>
             <Image source={{ uri: story.image }} style={styles.story} />
-            <Text style={{ color: "white", margin: 2 }}>{story.user.length > 11 ? story.user.slice(0, 6).toLowerCase() + '...' : story.user.toLowerCase()}</Text>
+            <Text style={{ color: "white", margin: 2 }}>
+              {story.user.length > 11
+                ? story.user.slice(0, 6).toLowerCase() + "..."
+                : story.user.toLowerCase()}
+            </Text>
           </View>
         ))}
       </ScrollView>
