@@ -48,7 +48,7 @@ const FormikPostUploader = ({ navigation }) => {
       .collection("posts")
       .add({
         imageUrl: imageUrl,
-        username: currentLoggedInUser.username,
+        user: currentLoggedInUser.username,
         profile_picture: currentLoggedInUser.profilePicture,
         owner_uid: firebase.auth().currentUser.uid,
         caption: caption,
