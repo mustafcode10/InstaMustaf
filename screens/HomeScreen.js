@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from "react-native";
 import Header from "./../components/home/Header";
 import Stories from "./../components/home/Stories";
@@ -9,15 +9,21 @@ import firebase from "./../firebase";
 import "firebase/compat/firestore";
 const db = firebase.firestore();
 
-const HomeScreen = ({navigation}) => {
-  const [posts, setPosts] =  useState([])
+const HomeScreen = ({ navigation }) => {
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
-    db.collectionGroup('posts').onSnapshot((snapshot) => {
-      console.log('POSTS', snapshot.docs.map(doc => doc.data()))
-      setPosts(snapshot.docs.map(doc => doc.data()))
-
-    })
-  }, [])
+    db.collectionGroup("posts")
+      .orderBy("createdAt", "desc")
+      .onSnapshot((snapshot) => {
+        console.log(
+          "POSTS",
+          snapshot.docs.map((doc) => doc.data())
+        );
+        setPosts(
+          snapshot.docs.map((post) => ({ id: post.id, ...post.data() }))
+        );
+      });
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <Header navigation={navigation} />
